@@ -1,0 +1,32 @@
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+
+<dom-module id="paper-location-app">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
+    <h2>Hello [[prop1]]!</h2>
+  </template>
+
+  <script>
+    /**
+     * @customElement
+     * @polymer
+     */
+    class PaperLocationApp extends Polymer.Element {
+      static get is() { return 'paper-location-app'; }
+      static get properties() {
+        return {
+          prop1: {
+            type: String,
+            value: 'paper-location-app'
+          }
+        };
+      }
+    }
+
+    window.customElements.define(PaperLocationApp.is, PaperLocationApp);
+  </script>
+</dom-module>
