@@ -68,5 +68,75 @@
     },
     "category": "ÁREAS ADMINISTRATIVAS",
     "people": []
+  },
+  {
+    "label": "DIRECCIÓN GENERAL DE DIFUSIÓN Y VINCULACIÓN",
+    "building": "1-B",
+    "position": {
+      "x": "480",
+      "y": "390"
+    },
+    "category": "ÁREAS ADMINISTRATIVAS",
+    "people": []
+  },
+  {
+    "label": "GALERÍA UNIVERSITARIA",
+    "building": "1-B",
+    "position": {
+      "x": "480",
+      "y": "390"
+    },
+    "category": "ÁREAS ADMINISTRATIVAS",
+    "people": []
+  },
+  {
+    "label": "CENTRO DE CIENCIAS BÁSICAS",
+    "building": "202",
+    "position": {
+      "x": "410",
+      "y": "305"
+    },
+    "category": "ÁREAS ADMINISTRATIVAS",
+    "people": []
+  },
+  {
+    "label": "CENTRO DE CIENCIAS DEL DISEÑO Y DE LA CONSTRUCCIÓN",
+    "building": "108",
+    "position": {
+      "x": "1090",
+      "y": "500"
+    },
+    "category": "ÁREAS ADMINISTRATIVAS",
+    "people": []
+  },
+  {
+    "label": "CENTRO DE CIENCIAS ECONÓMICAS Y ADMINISTRATIVAS",
+    "building": "32",
+    "position": {
+      "x": "890",
+      "y": "350"
+    },
+    "category": "ÁREAS ADMINISTRATIVAS",
+    "people": []
+  },
+  {
+    "label": "CENTRO DE CIENCIAS DE LA SALUD",
+    "building": "101",
+    "position": {
+      "x": "950",
+      "y": "500"
+    },
+    "category": "ÁREAS ADMINISTRATIVAS",
+    "people": []
+  },
+  {
+    "label": "CENTRO DE CIENCIAS SOCIALES Y HUMANIDADES",
+    "building": "6,8",
+    "position": {
+      "x": "800",
+      "y": "490"
+    },
+    "category": "ÁREAS ADMINISTRATIVAS",
+    "people": []
   }
 ]

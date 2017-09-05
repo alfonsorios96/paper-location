@@ -4,6 +4,7 @@
 <link rel="import" href="../../bower_components/paper-button/paper-button.html">
 <link rel="import" href="../../bower_components/app-layout/app-layout.html">
 <link rel="import" href="../../bower_components/iron-ajax/iron-ajax.html">
+<link rel="import" href="../../bower_components/paper-item/paper-item.html">
 
 <dom-module id="paper-location-app">
     <template>
@@ -22,6 +23,11 @@
                 display: flex;
                 flex-direction: row;
             }
+
+            .menu {
+                height: 100%;
+                overflow-y: scroll;
+            }
         </style>
         <iron-ajax
                 auto
@@ -31,11 +37,15 @@
                 debounce-duration="300"></iron-ajax>
         <app-drawer-layout responsive-width="1280px">
             <app-drawer swipe-open slot="drawer">
-                <template is="dom-repeat" items="[[places]]" as="place">
-                    <div class="places">
-                        <paper-button on-tap="pin">[[place.label]]</paper-button>
-                    </div>
-                </template>
+                <div class="menu">
+                    <template is="dom-repeat" items="[[places]]" as="place">
+                        <div class="places">
+                            <paper-button on-tap="pin">
+                                <paper-item>[[place.label]]</paper-item>
+                            </paper-button>
+                        </div>
+                    </template>
+                </div>
             </app-drawer>
             <app-header-layout>
                 <div class="container">
