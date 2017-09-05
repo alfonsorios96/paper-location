@@ -1,6 +1,9 @@
 <link rel="import" href="../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../../bower_components/polymer/lib/elements/dom-repeat.html">
+
 <link rel="import" href="../../bower_components/paper-button/paper-button.html">
 <link rel="import" href="../../bower_components/app-layout/app-layout.html">
+<link rel="import" href="../../bower_components/iron-ajax/iron-ajax.html">
 
 <dom-module id="paper-location-app">
     <template>
@@ -10,14 +13,29 @@
                 flex-direction: column;
             }
 
+            .places {
+                display: flex;
+                flex-direction: column;
+            }
+
             .control {
                 display: flex;
                 flex-direction: row;
             }
         </style>
+        <iron-ajax
+                auto
+                url="places.json"
+                handle-as="json"
+                on-response="handleResponse"
+                debounce-duration="300"></iron-ajax>
         <app-drawer-layout responsive-width="1280px">
             <app-drawer swipe-open slot="drawer">
-                <p>Hola mundo !</p>
+                <template is="dom-repeat" items="[[places]]" as="place">
+                    <div class="places">
+                        <paper-button on-tap="pin">[[place.label]]</paper-button>
+                    </div>
+                </template>
             </app-drawer>
             <app-header-layout>
                 <div class="container">
@@ -75,6 +93,24 @@
                                 x: 0,
                                 y: 0
                             }
+                        },
+                        marketInit: {
+                            type: Object,
+                            value: {
+                                x: undefined,
+                                y: undefined
+                            }
+                        },
+                        marketTarget: {
+                            type: Object,
+                            value: {
+                                x: undefined,
+                                y: undefined
+                            }
+                        },
+                        places: {
+                            type: Array,
+                            value: []
                         }
                     };
                 }
@@ -85,6 +121,7 @@
                 }
 
                 // Zoom methods
+                // TODO Targets position
 
                 zoomPlus() {
                     if (this.size.index < 10) {
@@ -94,6 +131,9 @@
 
                         this.set('position.x', this.position.x - 120);
                         this.set('position.y', this.position.y - 56);
+
+                        this.set('marketTarget.x', this.marketTarget.x - 120);
+                        this.set('marketTarget.y', this.marketTarget.y - 56);
 
                         this.__renderImage();
                     }
@@ -107,6 +147,10 @@
 
                         this.set('position.x', this.position.x + 120);
                         this.set('position.y', this.position.y + 56);
+
+                        this.set('marketTarget.x', this.marketTarget.x - 120);
+                        this.set('marketTarget.y', this.marketTarget.y - 56);
+
                         this.__renderImage();
                     }
                 }
@@ -119,6 +163,10 @@
 
                         this.set('position.x', 0);
                         this.set('position.y', 0);
+
+                        this.set('marketTarget.x', undefined);
+                        this.set('marketTarget.y', undefined);
+
                         this.__renderImage();
                     }
                 }
@@ -126,23 +174,58 @@
                 // Move methods
 
                 moveUp() {
-                    this.set('position.y', this.position.y + 10 + (3 * this.size.index));
+                    let movement = 10 + (3 * this.size.index);
+                    this.set('position.y', this.position.y + movement);
+                    this.set('marketTarget.y', this.marketTarget.y + movement);
                     this.__renderImage();
                 }
 
                 moveDown() {
-                    this.set('position.y', this.position.y - 10 - (3 * this.size.index));
+                    let movement = 10 - (3 * this.size.index);
+                    this.set('position.y', this.position.y - movement);
+                    this.set('marketTarget.y', this.marketTarget.y - movement);
                     this.__renderImage();
                 }
 
                 moveRight() {
-                    this.set('position.x', this.position.x - 10 - (3 * this.size.index));
+                    let movement = 10 - (3 * this.size.index);
+                    this.set('position.x', this.position.x - movement);
+                    this.set('marketTarget.x', this.marketTarget.x - movement);
                     this.__renderImage();
                 }
 
                 moveLeft() {
-                    this.set('position.x', this.position.x + 10 + (3 * this.size.index));
+                    let movement = 10 + (3 * this.size.index);
+                    this.set('position.x', this.position.x + movement);
+                    this.set('marketTarget.x', this.marketTarget.x + movement);
                     this.__renderImage();
+                }
+
+                pin(event) {
+                    this.set('marketTarget.x', event.model.__data.place.position.x);
+                    this.set('marketTarget.y', event.model.__data.place.position.y);
+                    this.__renderImage();
+                }
+
+                handleResponse(event) {
+                    this.set('places', event.detail.__data.response);
+                }
+
+                drawTarget(x, y) {
+
+                    this.context.beginPath();
+                    this.context.arc(x, y, 20, 0, (Math.PI * 2), true);
+                    this.context.strokeStyle = '#f00';
+                    this.context.lineWidth = 3;
+                    this.context.stroke();
+                    this.context.closePath();
+
+                    this.context.beginPath();
+                    this.context.arc(x, y, 5, 0, (Math.PI * 2), true);
+                    this.context.strokeStyle = '#ff8800';
+                    this.context.lineWidth = 3;
+                    this.context.stroke();
+                    this.context.closePath();
                 }
 
                 // Protected methods
@@ -159,6 +242,12 @@
                     imageObj.src = 'img/canvas.jpg';
                     imageObj.onload = () => {
                         this.context.drawImage(imageObj, this.position.x, this.position.y, this.size.width, this.size.height);
+                        if (this.marketInit.x !== undefined && this.marketInit.y !== undefined) {
+                            this.drawTarget(this.marketInit.x, this.marketInit.y);
+                        }
+                        if (this.marketTarget.x !== undefined && this.marketTarget.y !== undefined) {
+                            this.drawTarget(this.marketTarget.x, this.marketTarget.y);
+                        }
                     }
                 }
             }

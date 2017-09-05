@@ -1,0 +1,72 @@
+[
+  {
+    "label": "RECTORÍA",
+    "building": "1",
+    "position": {
+      "x": "560",
+      "y": "470"
+    },
+    "category": "ÁREAS ADMINISTRATIVAS",
+    "people": []
+  },
+  {
+    "label": "SECRETARÍA GENERAL",
+    "building": "1",
+    "position": {
+      "x": "560",
+      "y": "470"
+    },
+    "category": "ÁREAS ADMINISTRATIVAS",
+    "people": []
+  },
+  {
+    "label": "DIRECCIÓN GENERAL DE DOCENCIA DE PREGRADO",
+    "building": "1",
+    "position": {
+      "x": "560",
+      "y": "470"
+    },
+    "category": "ÁREAS ADMINISTRATIVAS",
+    "people": []
+  },
+  {
+    "label": "DIRECCIÓN GENERAL DE  INFRAESTRUCTURA UNIVERSITARIA",
+    "building": "1",
+    "position": {
+      "x": "560",
+      "y": "470"
+    },
+    "category": "ÁREAS ADMINISTRATIVAS",
+    "people": []
+  },
+  {
+    "label": "DIRECCIÓN GENERAL DE PLANEACIÓN Y DESARROLLO",
+    "building": "1",
+    "position": {
+      "x": "560",
+      "y": "470"
+    },
+    "category": "ÁREAS ADMINISTRATIVAS",
+    "people": []
+  },
+  {
+    "label": "DIRECCIÓN GENERAL DE FINANZAS",
+    "building": "1",
+    "position": {
+      "x": "560",
+      "y": "470"
+    },
+    "category": "ÁREAS ADMINISTRATIVAS",
+    "people": []
+  },
+  {
+    "label": "DIRECCIÓN GENERAL DE INVESTIGACIÓN Y POSGRADO",
+    "building": "1-B",
+    "position": {
+      "x": "480",
+      "y": "390"
+    },
+    "category": "ÁREAS ADMINISTRATIVAS",
+    "people": []
+  }
+]
