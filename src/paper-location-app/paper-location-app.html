@@ -6,22 +6,27 @@
         <style>
             .container {
                 display: flex;
+                flex-direction: column;
+            }
+
+            .control {
+                display: flex;
                 flex-direction: row;
             }
         </style>
         <div class="container">
-            <canvas id="map" width="900px" height="600px" style="border:1px solid grey;">
-                Tu navegador no soporta canvas.
-            </canvas>
             <div class="control">
                 <paper-button on-tap="zoomPlus">More</paper-button>
                 <paper-button on-tap="zoomLess">Less</paper-button>
                 <hr>
+                <paper-button on-tap="moveLeft">Left</paper-button>
                 <paper-button on-tap="moveUp">Up</paper-button>
                 <paper-button on-tap="moveDown">Down</paper-button>
                 <paper-button on-tap="moveRight">Right</paper-button>
-                <paper-button on-tap="moveLeft">Left</paper-button>
             </div>
+            <canvas id="map" width="1200px" height="560px" style="border:1px solid grey;">
+                Tu navegador no soporta canvas.
+            </canvas>
         </div>
     </template>
 
@@ -50,8 +55,8 @@
                         size: {
                             type: Object,
                             value: {
-                                width: 900,
-                                height: 600,
+                                width: 1200,
+                                height: 560,
                                 index: 0
                             }
                         },
@@ -78,8 +83,8 @@
                         this.set('size.height', this.size.height * 1.1);
                         this.set('size.index', this.size.index + 1);
 
-                        this.set('position.x', this.position.x - 90);
-                        this.set('position.y', this.position.y - 60);
+                        this.set('position.x', this.position.x - 120);
+                        this.set('position.y', this.position.y - 56);
 
                         this.__renderImage();
                     }
@@ -91,8 +96,8 @@
                         this.set('size.height', this.size.height * 0.9);
                         this.set('size.index', this.size.index - 1);
 
-                        this.set('position.x', this.position.x + 90);
-                        this.set('position.y', this.position.y + 60);
+                        this.set('position.x', this.position.x + 120);
+                        this.set('position.y', this.position.y + 56);
                         this.__renderImage();
                     }
                 }
