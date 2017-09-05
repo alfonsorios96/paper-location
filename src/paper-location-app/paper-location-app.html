@@ -1,32 +1,81 @@
 <link rel="import" href="../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
 
 <dom-module id="paper-location-app">
-  <template>
-    <style>
-      :host {
-        display: block;
-      }
-    </style>
-    <h2>Hello [[prop1]]!</h2>
-  </template>
+    <template>
+        <canvas id="map" width="900px" height="600px" style="border:1px solid grey;">
+            Tu navegador no soporta canvas.
+        </canvas>
+        <paper-button on-tap="zoomPlus">More</paper-button>
+        <paper-button on-tap="zoomLess">Less</paper-button>
+    </template>
 
-  <script>
-    /**
-     * @customElement
-     * @polymer
-     */
-    class PaperLocationApp extends Polymer.Element {
-      static get is() { return 'paper-location-app'; }
-      static get properties() {
-        return {
-          prop1: {
-            type: String,
-            value: 'paper-location-app'
-          }
-        };
-      }
-    }
+    <script>
+        'use strict';
+        (function AppDefinition(customElements) {
+            /**
+             * @customElement
+             * @polymer
+             */
+            class PaperLocationApp extends Polymer.Element {
+                static get is() {
+                    return 'paper-location-app';
+                }
 
-    window.customElements.define(PaperLocationApp.is, PaperLocationApp);
-  </script>
+                static get properties() {
+                    return {
+                        context: {
+                            type: Object,
+                            value: {}
+                        },
+                        scale: {
+                            type: Number,
+                            value: 1
+                        },
+                        size: {
+                            type: Object,
+                            value: {
+                                width: 900,
+                                height: 600
+                            }
+                        }
+                    };
+                }
+
+                connectedCallback() {
+                    super.connectedCallback();
+                    this.__initCanvas();
+                }
+
+                zoomPlus() {
+                    this.set('size.width', this.size.width * 1.1);
+                    this.set('size.height', this.size.height * 1.1);
+                    this.__renderImage(0, 0);
+                }
+
+                zoomLess() {
+                    this.set('size.width', this.size.width * 0.9);
+                    this.set('size.height', this.size.height * 0.9);
+                    this.__renderImage(0, 0);
+                }
+
+                __initCanvas() {
+                    let canvas = this.$.map;
+                    this.set('context', canvas.getContext('2d'));
+                    this.__renderImage(0, 0, this.size.width, this.size.height);
+                }
+
+                __renderImage(x, y) {
+                    this.$.map.width = this.$.map.width;
+                    let imageObj = new Image();
+                    imageObj.src = 'img/canvas.jpg';
+                    imageObj.onload = () => {
+                        this.context.drawImage(imageObj, x, y, this.size.width, this.size.height);
+                    }
+                }
+            }
+
+            customElements.define(PaperLocationApp.is, PaperLocationApp);
+        })(window.customElements);
+    </script>
 </dom-module>
