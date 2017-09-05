@@ -8,6 +8,11 @@
         </canvas>
         <paper-button on-tap="zoomPlus">More</paper-button>
         <paper-button on-tap="zoomLess">Less</paper-button>
+        <hr>
+        <paper-button on-tap="moveUp">Up</paper-button>
+        <paper-button on-tap="moveDown">Down</paper-button>
+        <paper-button on-tap="moveRight">Right</paper-button>
+        <paper-button on-tap="moveLeft">Left</paper-button>
     </template>
 
     <script>
@@ -38,6 +43,13 @@
                                 width: 900,
                                 height: 600
                             }
+                        },
+                        position: {
+                            type: Object,
+                            value: {
+                                x: 0,
+                                y: 0
+                            }
                         }
                     };
                 }
@@ -46,6 +58,8 @@
                     super.connectedCallback();
                     this.__initCanvas();
                 }
+
+                // Zoom methods
 
                 zoomPlus() {
                     this.set('size.width', this.size.width * 1.1);
@@ -56,21 +70,45 @@
                 zoomLess() {
                     this.set('size.width', this.size.width * 0.9);
                     this.set('size.height', this.size.height * 0.9);
-                    this.__renderImage(0, 0);
+                    this.__renderImage();
                 }
+
+                // Move methods
+
+                moveUp() {
+                    this.set('position.y', this.position.y + 10);
+                    this.__renderImage();
+                }
+
+                moveDown() {
+                    this.set('position.y', this.position.y - 10);
+                    this.__renderImage();
+                }
+
+                moveRight() {
+                    this.set('position.x', this.position.x - 10);
+                    this.__renderImage();
+                }
+
+                moveLeft() {
+                    this.set('position.x', this.position.x + 10);
+                    this.__renderImage();
+                }
+
+                // Protected methods
 
                 __initCanvas() {
                     let canvas = this.$.map;
                     this.set('context', canvas.getContext('2d'));
-                    this.__renderImage(0, 0, this.size.width, this.size.height);
+                    this.__renderImage(this.position.x, this.position.y, this.size.width, this.size.height);
                 }
 
-                __renderImage(x, y) {
+                __renderImage() {
                     this.$.map.width = this.$.map.width;
                     let imageObj = new Image();
                     imageObj.src = 'img/canvas.jpg';
                     imageObj.onload = () => {
-                        this.context.drawImage(imageObj, x, y, this.size.width, this.size.height);
+                        this.context.drawImage(imageObj, this.position.x, this.position.y, this.size.width, this.size.height);
                     }
                 }
             }
