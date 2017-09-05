@@ -1,5 +1,6 @@
 <link rel="import" href="../../bower_components/polymer/polymer-element.html">
 <link rel="import" href="../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../bower_components/app-layout/app-layout.html">
 
 <dom-module id="paper-location-app">
     <template>
@@ -14,20 +15,28 @@
                 flex-direction: row;
             }
         </style>
-        <div class="container">
-            <div class="control">
-                <paper-button on-tap="zoomPlus">More</paper-button>
-                <paper-button on-tap="zoomLess">Less</paper-button>
-                <hr>
-                <paper-button on-tap="moveLeft">Left</paper-button>
-                <paper-button on-tap="moveUp">Up</paper-button>
-                <paper-button on-tap="moveDown">Down</paper-button>
-                <paper-button on-tap="moveRight">Right</paper-button>
-            </div>
-            <canvas id="map" width="1200px" height="560px" style="border:1px solid grey;">
-                Tu navegador no soporta canvas.
-            </canvas>
-        </div>
+        <app-drawer-layout responsive-width="1280px">
+            <app-drawer swipe-open slot="drawer">
+                <p>Hola mundo !</p>
+            </app-drawer>
+            <app-header-layout>
+                <div class="container">
+                    <div class="control">
+                        <paper-button on-tap="zoomOrigin">Reset</paper-button>
+                        <paper-button on-tap="zoomPlus">More</paper-button>
+                        <paper-button on-tap="zoomLess">Less</paper-button>
+                        <hr>
+                        <paper-button on-tap="moveLeft">Left</paper-button>
+                        <paper-button on-tap="moveUp">Up</paper-button>
+                        <paper-button on-tap="moveDown">Down</paper-button>
+                        <paper-button on-tap="moveRight">Right</paper-button>
+                    </div>
+                    <canvas id="map" width="1200px" height="560px" style="border:1px solid grey;">
+                        Tu navegador no soporta canvas.
+                    </canvas>
+                </div>
+            </app-header-layout>
+        </app-drawer-layout>
     </template>
 
     <script>
@@ -98,6 +107,18 @@
 
                         this.set('position.x', this.position.x + 120);
                         this.set('position.y', this.position.y + 56);
+                        this.__renderImage();
+                    }
+                }
+
+                zoomOrigin() {
+                    if (this.size.index > 0) {
+                        this.set('size.width', 1200);
+                        this.set('size.height', 560);
+                        this.set('size.index', 0);
+
+                        this.set('position.x', 0);
+                        this.set('position.y', 0);
                         this.__renderImage();
                     }
                 }
