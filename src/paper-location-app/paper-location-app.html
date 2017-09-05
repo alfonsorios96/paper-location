@@ -3,16 +3,26 @@
 
 <dom-module id="paper-location-app">
     <template>
-        <canvas id="map" width="900px" height="600px" style="border:1px solid grey;">
-            Tu navegador no soporta canvas.
-        </canvas>
-        <paper-button on-tap="zoomPlus">More</paper-button>
-        <paper-button on-tap="zoomLess">Less</paper-button>
-        <hr>
-        <paper-button on-tap="moveUp">Up</paper-button>
-        <paper-button on-tap="moveDown">Down</paper-button>
-        <paper-button on-tap="moveRight">Right</paper-button>
-        <paper-button on-tap="moveLeft">Left</paper-button>
+        <style>
+            .container {
+                display: flex;
+                flex-direction: row;
+            }
+        </style>
+        <div class="container">
+            <canvas id="map" width="900px" height="600px" style="border:1px solid grey;">
+                Tu navegador no soporta canvas.
+            </canvas>
+            <div class="control">
+                <paper-button on-tap="zoomPlus">More</paper-button>
+                <paper-button on-tap="zoomLess">Less</paper-button>
+                <hr>
+                <paper-button on-tap="moveUp">Up</paper-button>
+                <paper-button on-tap="moveDown">Down</paper-button>
+                <paper-button on-tap="moveRight">Right</paper-button>
+                <paper-button on-tap="moveLeft">Left</paper-button>
+            </div>
+        </div>
     </template>
 
     <script>
@@ -41,7 +51,8 @@
                             type: Object,
                             value: {
                                 width: 900,
-                                height: 600
+                                height: 600,
+                                index: 0
                             }
                         },
                         position: {
@@ -62,36 +73,49 @@
                 // Zoom methods
 
                 zoomPlus() {
-                    this.set('size.width', this.size.width * 1.1);
-                    this.set('size.height', this.size.height * 1.1);
-                    this.__renderImage(0, 0);
+                    if (this.size.index < 10) {
+                        this.set('size.width', this.size.width * 1.1);
+                        this.set('size.height', this.size.height * 1.1);
+                        this.set('size.index', this.size.index + 1);
+
+                        this.set('position.x', this.position.x - 90);
+                        this.set('position.y', this.position.y - 60);
+
+                        this.__renderImage();
+                    }
                 }
 
                 zoomLess() {
-                    this.set('size.width', this.size.width * 0.9);
-                    this.set('size.height', this.size.height * 0.9);
-                    this.__renderImage();
+                    if (this.size.index > 0) {
+                        this.set('size.width', this.size.width * 0.9);
+                        this.set('size.height', this.size.height * 0.9);
+                        this.set('size.index', this.size.index - 1);
+
+                        this.set('position.x', this.position.x + 90);
+                        this.set('position.y', this.position.y + 60);
+                        this.__renderImage();
+                    }
                 }
 
                 // Move methods
 
                 moveUp() {
-                    this.set('position.y', this.position.y + 10);
+                    this.set('position.y', this.position.y + 10 + (3 * this.size.index));
                     this.__renderImage();
                 }
 
                 moveDown() {
-                    this.set('position.y', this.position.y - 10);
+                    this.set('position.y', this.position.y - 10 - (3 * this.size.index));
                     this.__renderImage();
                 }
 
                 moveRight() {
-                    this.set('position.x', this.position.x - 10);
+                    this.set('position.x', this.position.x - 10 - (3 * this.size.index));
                     this.__renderImage();
                 }
 
                 moveLeft() {
-                    this.set('position.x', this.position.x + 10);
+                    this.set('position.x', this.position.x + 10 + (3 * this.size.index));
                     this.__renderImage();
                 }
 
