@@ -1,13 +1,7 @@
 <link rel="import" href="../../bower_components/polymer/polymer-element.html">
-<link rel="import" href="../../bower_components/polymer/lib/elements/dom-if.html">
-<link rel="import" href="../../bower_components/polymer/lib/elements/dom-repeat.html">
 <link rel="import" href="../../bower_components/polymer/lib/mixins/gesture-event-listeners.html">
 
 <link rel="import" href="../../bower_components/paper-button/paper-button.html">
-<link rel="import" href="../../bower_components/app-layout/app-layout.html">
-<link rel="import" href="../../bower_components/iron-ajax/iron-ajax.html">
-<link rel="import" href="../../bower_components/paper-item/paper-item.html">
-<link rel="import" href="../../bower_components/iron-collapse/iron-collapse.html">
 
 <dom-module id="map-component">
     <template>
@@ -89,6 +83,10 @@
                                 x: undefined,
                                 y: undefined
                             }
+                        },
+                        market: {
+                            type: Object,
+                            observer: 'pin'
                         }
                     };
                 }
@@ -179,30 +177,9 @@
                     this.__renderImage();
                 }
 
-                // Animate methods
-
-                showPlaces(event) {
-                    switch (event.path[0].innerText) {
-                        case 'ÁREAS ADMINISTRATIVAS':
-                            this.dispatchEvent(new CustomEvent('change-area', {
-                                bubbles: true,
-                                composed: true,
-                                detail: 1
-                            }));
-                            break;
-                        case 'ÁREAS DE APOYO':
-                            this.dispatchEvent(new CustomEvent('change-area', {
-                                bubbles: true,
-                                composed: true,
-                                detail: 2
-                            }));
-                            break;
-                    }
-                }
-
-                pin(event) {
-                    this.set('marketTarget.x', event.model.__data.place.position.x);
-                    this.set('marketTarget.y', event.model.__data.place.position.y);
+                pin() {
+                    this.set('marketTarget.x', this.market.x);
+                    this.set('marketTarget.y', this.market.y);
                     this.__renderImage();
                 }
 
@@ -221,6 +198,10 @@
                     this.context.lineWidth = 3;
                     this.context.stroke();
                     this.context.closePath();
+                }
+
+                hello(event) {
+                    console.log('canvas', this.$.map.position(event));
                 }
 
                 // Protected methods

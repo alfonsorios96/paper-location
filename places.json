@@ -138,5 +138,176 @@
     },
     "category": "ÁREAS ADMINISTRATIVAS",
     "people": []
+  },
+
+  {
+    "label": "DEPARTAMENTO DE COMUNICACIÓN Y RELACIONES PÚBLICAS",
+    "building": "2",
+    "position": {
+      "x": "620",
+      "y": "460"
+    },
+    "category": "ÁREAS DE APOYO",
+    "people": []
+  },
+  {
+    "label": "CONTROL ESCOLAR Y CAJAS",
+    "building": "1-A",
+    "position": {
+      "x": "470",
+      "y": "470"
+    },
+    "category": "ÁREAS DE APOYO",
+    "people": []
+  },
+  {
+    "label": "FEDERACIÓN DE ESTUDIANTES",
+    "building": "1-A",
+    "position": {
+      "x": "470",
+      "y": "470"
+    },
+    "category": "ÁREAS DE APOYO",
+    "people": []
+  },
+  {
+    "label": "LIBRERÍA UNIVERSITARIA",
+    "building": "9",
+    "position": {
+      "x": "650",
+      "y": "440"
+    },
+    "category": "ÁREAS DE APOYO",
+    "people": []
+  },
+  {
+    "label": "TIENDA DE PRODUCTOS POSTA",
+    "building": "9",
+    "position": {
+      "x": "650",
+      "y": "440"
+    },
+    "category": "ÁREAS DE APOYO",
+    "people": []
+  },
+  {
+    "label": "UNIVERSITIENDA",
+    "building": "9",
+    "position": {
+      "x": "650",
+      "y": "440"
+    },
+    "category": "ÁREAS DE APOYO",
+    "people": []
+  },
+  {
+    "label": "CAFETERÍA ORIENTE",
+    "building": "9",
+    "position": {
+      "x": "650",
+      "y": "440"
+    },
+    "category": "ÁREAS DE APOYO",
+    "people": []
+  },
+  {
+    "label": "CAFETERÍA PORIENTE",
+    "building": "47",
+    "position": {
+      "x": "675",
+      "y": "285"
+    },
+    "category": "ÁREAS DE APOYO",
+    "people": []
+  },
+  {
+    "label": "RADIO UNIVERSIDAD",
+    "building": "14",
+    "position": {
+      "x": "840",
+      "y": "440"
+    },
+    "category": "ÁREAS DE APOYO",
+    "people": []
+  },
+  {
+    "label": "CASETA DEL DEPARTAMENTO DE VIGILANCIA",
+    "building": "63",
+    "position": {
+      "x": "585",
+      "y": "520"
+    },
+    "category": "ÁREAS DE APOYO",
+    "people": []
+  },
+  {
+    "label": "CASETA ORIENTE",
+    "building": "64",
+    "position": {
+      "x": "720",
+      "y": "490"
+    },
+    "category": "ÁREAS DE APOYO",
+    "people": []
+  },
+  {
+    "label": "CONMUTADOR",
+    "building": "64",
+    "position": {
+      "x": "720",
+      "y": "490"
+    },
+    "category": "ÁREAS DE APOYO",
+    "people": []
+  },
+  {
+    "label": "MENSAJERÍA",
+    "building": "64",
+    "position": {
+      "x": "720",
+      "y": "490"
+    },
+    "category": "ÁREAS DE APOYO",
+    "people": []
+  },
+  {
+    "label": "BIBLIOTECA CENTRAL",
+    "building": "65",
+    "position": {
+      "x": "550",
+      "y": "400"
+    },
+    "category": "ÁREAS DE APOYO",
+    "people": []
+  },
+  {
+    "label": "AUDITORIO “DR. PEDRO DE ALBA",
+    "building": "65",
+    "position": {
+      "x": "550",
+      "y": "400"
+    },
+    "category": "ÁREAS DE APOYO",
+    "people": []
+  },
+  {
+    "label": "CASETA PONIENTE",
+    "building": "66",
+    "position": {
+      "x": "780",
+      "y": "285"
+    },
+    "category": "ÁREAS DE APOYO",
+    "people": []
+  },
+  {
+    "label": "SUAP",
+    "building": "66",
+    "position": {
+      "x": "780",
+      "y": "285"
+    },
+    "category": "ÁREAS DE APOYO",
+    "people": []
   }
 ]
