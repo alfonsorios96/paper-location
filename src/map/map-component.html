@@ -35,7 +35,7 @@
 
     <script>
         'use strict';
-        (function MapDefinition(customElements) {
+        (function MapDefinition(window) {
             /**
              * @customElement
              * @polymer
@@ -180,6 +180,8 @@
                 pin() {
                     this.set('marketTarget.x', this.market.x);
                     this.set('marketTarget.y', this.market.y);
+                    let notificacion = window.webkitNotifications.createNotification("", "Uso de Notification API", "¡Felicidades! Ya has configurado las notificaciones :)");
+                    notificacion.show();
                     this.__renderImage();
                 }
 
@@ -228,7 +230,7 @@
                 }
             }
 
-            customElements.define(MapComponent.is, MapComponent);
-        })(window.customElements);
+            window.customElements.define(MapComponent.is, MapComponent);
+        })(window);
     </script>
 </dom-module>
