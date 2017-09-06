@@ -1,0 +1,253 @@
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../../bower_components/polymer/lib/elements/dom-if.html">
+<link rel="import" href="../../bower_components/polymer/lib/elements/dom-repeat.html">
+<link rel="import" href="../../bower_components/polymer/lib/mixins/gesture-event-listeners.html">
+
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../bower_components/app-layout/app-layout.html">
+<link rel="import" href="../../bower_components/iron-ajax/iron-ajax.html">
+<link rel="import" href="../../bower_components/paper-item/paper-item.html">
+<link rel="import" href="../../bower_components/iron-collapse/iron-collapse.html">
+
+<dom-module id="map-component">
+    <template>
+        <style>
+            .container {
+                display: flex;
+                flex-direction: column;
+            }
+
+            .control {
+                display: flex;
+                flex-direction: row;
+            }
+        </style>
+        <div class="container">
+            <div class="control">
+                <paper-button on-tap="zoomOrigin">Reset</paper-button>
+                <paper-button on-tap="zoomPlus">More</paper-button>
+                <paper-button on-tap="zoomLess">Less</paper-button>
+                <hr>
+                <paper-button on-tap="moveLeft">Left</paper-button>
+                <paper-button on-tap="moveUp">Up</paper-button>
+                <paper-button on-tap="moveDown">Down</paper-button>
+                <paper-button on-tap="moveRight">Right</paper-button>
+            </div>
+            <canvas id="map" width="1200px" height="560px" style="border:1px solid grey;">
+                Tu navegador no soporta canvas.
+            </canvas>
+        </div>
+    </template>
+
+    <script>
+        'use strict';
+        (function MapDefinition(customElements) {
+            /**
+             * @customElement
+             * @polymer
+             */
+            class MapComponent extends Polymer.GestureEventListeners(Polymer.Element) {
+                static get is() {
+                    return 'map-component';
+                }
+
+                static get properties() {
+                    return {
+                        context: {
+                            type: Object,
+                            value: {}
+                        },
+                        scale: {
+                            type: Number,
+                            value: 1
+                        },
+                        size: {
+                            type: Object,
+                            value: {
+                                width: 1200,
+                                height: 560,
+                                index: 0
+                            }
+                        },
+                        position: {
+                            type: Object,
+                            value: {
+                                x: 0,
+                                y: 0
+                            }
+                        },
+                        marketInit: {
+                            type: Object,
+                            value: {
+                                x: undefined,
+                                y: undefined
+                            }
+                        },
+                        marketTarget: {
+                            type: Object,
+                            value: {
+                                x: undefined,
+                                y: undefined
+                            }
+                        }
+                    };
+                }
+
+                connectedCallback() {
+                    super.connectedCallback();
+                    this.__initCanvas();
+                }
+
+                // Zoom methods
+                // TODO Targets position
+
+                zoomPlus() {
+                    if (this.size.index < 10) {
+                        this.set('size.width', this.size.width * 1.1);
+                        this.set('size.height', this.size.height * 1.1);
+                        this.set('size.index', this.size.index + 1);
+
+                        this.set('position.x', this.position.x - 120);
+                        this.set('position.y', this.position.y - 56);
+
+                        this.set('marketTarget.x', this.marketTarget.x - 120);
+                        this.set('marketTarget.y', this.marketTarget.y - 56);
+
+                        this.__renderImage();
+                    }
+                }
+
+                zoomLess() {
+                    if (this.size.index > 0) {
+                        this.set('size.width', this.size.width * 0.9);
+                        this.set('size.height', this.size.height * 0.9);
+                        this.set('size.index', this.size.index - 1);
+
+                        this.set('position.x', this.position.x + 120);
+                        this.set('position.y', this.position.y + 56);
+
+                        this.set('marketTarget.x', this.marketTarget.x - 120);
+                        this.set('marketTarget.y', this.marketTarget.y - 56);
+
+                        this.__renderImage();
+                    }
+                }
+
+                zoomOrigin() {
+                    if (this.size.index > 0) {
+                        this.set('size.width', 1200);
+                        this.set('size.height', 560);
+                        this.set('size.index', 0);
+
+                        this.set('position.x', 0);
+                        this.set('position.y', 0);
+
+                        this.set('marketTarget.x', undefined);
+                        this.set('marketTarget.y', undefined);
+
+                        this.__renderImage();
+                    }
+                }
+
+                // Move methods
+
+                moveUp() {
+                    let movement = 10 + (3 * this.size.index);
+                    this.set('position.y', this.position.y + movement);
+                    this.set('marketTarget.y', this.marketTarget.y + movement);
+                    this.__renderImage();
+                }
+
+                moveDown() {
+                    let movement = 10 - (3 * this.size.index);
+                    this.set('position.y', this.position.y - movement);
+                    this.set('marketTarget.y', this.marketTarget.y - movement);
+                    this.__renderImage();
+                }
+
+                moveRight() {
+                    let movement = 10 - (3 * this.size.index);
+                    this.set('position.x', this.position.x - movement);
+                    this.set('marketTarget.x', this.marketTarget.x - movement);
+                    this.__renderImage();
+                }
+
+                moveLeft() {
+                    let movement = 10 + (3 * this.size.index);
+                    this.set('position.x', this.position.x + movement);
+                    this.set('marketTarget.x', this.marketTarget.x + movement);
+                    this.__renderImage();
+                }
+
+                // Animate methods
+
+                showPlaces(event) {
+                    switch (event.path[0].innerText) {
+                        case 'ÁREAS ADMINISTRATIVAS':
+                            this.dispatchEvent(new CustomEvent('change-area', {
+                                bubbles: true,
+                                composed: true,
+                                detail: 1
+                            }));
+                            break;
+                        case 'ÁREAS DE APOYO':
+                            this.dispatchEvent(new CustomEvent('change-area', {
+                                bubbles: true,
+                                composed: true,
+                                detail: 2
+                            }));
+                            break;
+                    }
+                }
+
+                pin(event) {
+                    this.set('marketTarget.x', event.model.__data.place.position.x);
+                    this.set('marketTarget.y', event.model.__data.place.position.y);
+                    this.__renderImage();
+                }
+
+                drawTarget(x, y) {
+
+                    this.context.beginPath();
+                    this.context.arc(x, y, 20, 0, (Math.PI * 2), true);
+                    this.context.strokeStyle = '#f00';
+                    this.context.lineWidth = 3;
+                    this.context.stroke();
+                    this.context.closePath();
+
+                    this.context.beginPath();
+                    this.context.arc(x, y, 5, 0, (Math.PI * 2), true);
+                    this.context.strokeStyle = '#ff8800';
+                    this.context.lineWidth = 3;
+                    this.context.stroke();
+                    this.context.closePath();
+                }
+
+                // Protected methods
+
+                __initCanvas() {
+                    let canvas = this.$.map;
+                    this.set('context', canvas.getContext('2d'));
+                    this.__renderImage(this.position.x, this.position.y, this.size.width, this.size.height);
+                }
+
+                __renderImage() {
+                    this.$.map.width = this.$.map.width;
+                    let imageObj = new Image();
+                    imageObj.src = 'img/canvas.jpg';
+                    imageObj.onload = () => {
+                        this.context.drawImage(imageObj, this.position.x, this.position.y, this.size.width, this.size.height);
+                        if (this.marketInit.x !== undefined && this.marketInit.y !== undefined) {
+                            this.drawTarget(this.marketInit.x, this.marketInit.y);
+                        }
+                        if (this.marketTarget.x !== undefined && this.marketTarget.y !== undefined) {
+                            this.drawTarget(this.marketTarget.x, this.marketTarget.y);
+                        }
+                    }
+                }
+            }
+
+            customElements.define(MapComponent.is, MapComponent);
+        })(window.customElements);
+    </script>
+</dom-module>
