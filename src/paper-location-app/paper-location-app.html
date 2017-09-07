@@ -18,19 +18,9 @@
 <dom-module id="paper-location-app">
     <template>
         <style>
-            .container {
-                display: flex;
-                flex-direction: column;
-            }
-
             .places {
                 display: flex;
                 flex-direction: column;
-            }
-
-            .control {
-                display: flex;
-                flex-direction: row;
             }
 
             .menu {
@@ -49,8 +39,8 @@
                 handle-as="json"
                 on-response="handleResponse"
                 debounce-duration="300"></iron-ajax>
-        <app-drawer-layout responsive-width="1280px">
-            <app-drawer swipe-open slot="drawer">
+        <app-drawer-layout fullbleed narrow="{{narrow}}">
+            <app-drawer id="drawer" slot="drawer" swipe-open="[[narrow]]">
                 <div class="menu">
                     <paper-input label="Buscar un lugar">
                         <paper-icon-button slot="suffix" icon="search"></paper-icon-button>
@@ -90,7 +80,14 @@
                 </div>
             </app-drawer>
             <app-header-layout>
+                <app-header slot="header">
+                    <app-toolbar>
+                        <paper-icon-button icon="menu" on-tap="handlerDrawer"></paper-icon-button>
+                        <div main-title>UAA Localización</div>
+                    </app-toolbar>
+                </app-header>
                 <map-component market="[[market]]"></map-component>
+                <!--TODO add current location-->
             </app-header-layout>
         </app-drawer-layout>
     </template>
@@ -162,6 +159,10 @@
 
                 handleResponse(event) {
                     this.set('places', event.detail.__data.response);
+                }
+
+                handlerDrawer() {
+                    this.$.drawer.toggle();
                 }
             }
 

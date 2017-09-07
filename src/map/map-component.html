@@ -10,24 +10,9 @@
                 display: flex;
                 flex-direction: column;
             }
-
-            .control {
-                display: flex;
-                flex-direction: row;
-            }
         </style>
         <div class="container">
-            <div class="control">
-                <paper-button on-tap="zoomOrigin">Reset</paper-button>
-                <paper-button on-tap="zoomPlus">More</paper-button>
-                <paper-button on-tap="zoomLess">Less</paper-button>
-                <hr>
-                <paper-button on-tap="moveLeft">Left</paper-button>
-                <paper-button on-tap="moveUp">Up</paper-button>
-                <paper-button on-tap="moveDown">Down</paper-button>
-                <paper-button on-tap="moveRight">Right</paper-button>
-            </div>
-            <canvas id="map" width="1200px" height="560px" style="border:1px solid grey;">
+            <canvas id="map" width="500px" height="600px" style="border:1px solid grey;" on-track="handleTrack">
                 Tu navegador no soporta canvas.
             </canvas>
         </div>
@@ -51,23 +36,18 @@
                             type: Object,
                             value: {}
                         },
-                        scale: {
-                            type: Number,
-                            value: 1
-                        },
                         size: {
                             type: Object,
                             value: {
-                                width: 1200,
-                                height: 560,
-                                index: 0
+                                width: 1172,
+                                height: 1110
                             }
                         },
                         position: {
                             type: Object,
                             value: {
-                                x: 0,
-                                y: 0
+                                x: -400,
+                                y: -400
                             }
                         },
                         marketInit: {
@@ -96,92 +76,11 @@
                     this.__initCanvas();
                 }
 
-                // Zoom methods
-                // TODO Targets position
-
-                zoomPlus() {
-                    if (this.size.index < 10) {
-                        this.set('size.width', this.size.width * 1.1);
-                        this.set('size.height', this.size.height * 1.1);
-                        this.set('size.index', this.size.index + 1);
-
-                        this.set('position.x', this.position.x - 120);
-                        this.set('position.y', this.position.y - 56);
-
-                        this.set('marketTarget.x', this.marketTarget.x - 120);
-                        this.set('marketTarget.y', this.marketTarget.y - 56);
-
-                        this.__renderImage();
-                    }
-                }
-
-                zoomLess() {
-                    if (this.size.index > 0) {
-                        this.set('size.width', this.size.width * 0.9);
-                        this.set('size.height', this.size.height * 0.9);
-                        this.set('size.index', this.size.index - 1);
-
-                        this.set('position.x', this.position.x + 120);
-                        this.set('position.y', this.position.y + 56);
-
-                        this.set('marketTarget.x', this.marketTarget.x - 120);
-                        this.set('marketTarget.y', this.marketTarget.y - 56);
-
-                        this.__renderImage();
-                    }
-                }
-
-                zoomOrigin() {
-                    if (this.size.index > 0) {
-                        this.set('size.width', 1200);
-                        this.set('size.height', 560);
-                        this.set('size.index', 0);
-
-                        this.set('position.x', 0);
-                        this.set('position.y', 0);
-
-                        this.set('marketTarget.x', undefined);
-                        this.set('marketTarget.y', undefined);
-
-                        this.__renderImage();
-                    }
-                }
-
                 // Move methods
-
-                moveUp() {
-                    let movement = 10 + (3 * this.size.index);
-                    this.set('position.y', this.position.y + movement);
-                    this.set('marketTarget.y', this.marketTarget.y + movement);
-                    this.__renderImage();
-                }
-
-                moveDown() {
-                    let movement = 10 - (3 * this.size.index);
-                    this.set('position.y', this.position.y - movement);
-                    this.set('marketTarget.y', this.marketTarget.y - movement);
-                    this.__renderImage();
-                }
-
-                moveRight() {
-                    let movement = 10 - (3 * this.size.index);
-                    this.set('position.x', this.position.x - movement);
-                    this.set('marketTarget.x', this.marketTarget.x - movement);
-                    this.__renderImage();
-                }
-
-                moveLeft() {
-                    let movement = 10 + (3 * this.size.index);
-                    this.set('position.x', this.position.x + movement);
-                    this.set('marketTarget.x', this.marketTarget.x + movement);
-                    this.__renderImage();
-                }
 
                 pin() {
                     this.set('marketTarget.x', this.market.x);
                     this.set('marketTarget.y', this.market.y);
-                    let notificacion = window.webkitNotifications.createNotification("", "Uso de Notification API", "¡Felicidades! Ya has configurado las notificaciones :)");
-                    notificacion.show();
                     this.__renderImage();
                 }
 
@@ -202,8 +101,22 @@
                     this.context.closePath();
                 }
 
-                hello(event) {
-                    console.log('canvas', this.$.map.position(event));
+                handleTrack(event) {
+                    let positionX = this.position.x + event.detail.dx;
+                    let positionY = this.position.y + event.detail.dy;
+                    if (positionX <= 0 && positionX >= -680 && positionY <= 0 && positionY >= -500) {
+                        switch (event.detail.state) {
+                            case 'track':
+                                this.set('position.x', positionX);
+                                this.set('position.y', positionY);
+
+                                this.set('marketTarget.y', this.marketTarget.x + event.detail.dx);
+                                this.set('marketTarget.y', this.marketTarget.y + event.detail.dy);
+                                this.__renderImage();
+                                break;
+                        }
+                    }
+
                 }
 
                 // Protected methods
@@ -220,9 +133,6 @@
                     imageObj.src = 'img/canvas.jpg';
                     imageObj.onload = () => {
                         this.context.drawImage(imageObj, this.position.x, this.position.y, this.size.width, this.size.height);
-                        if (this.marketInit.x !== undefined && this.marketInit.y !== undefined) {
-                            this.drawTarget(this.marketInit.x, this.marketInit.y);
-                        }
                         if (this.marketTarget.x !== undefined && this.marketTarget.y !== undefined) {
                             this.drawTarget(this.marketTarget.x, this.marketTarget.y);
                         }

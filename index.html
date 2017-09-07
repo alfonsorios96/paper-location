@@ -1,18 +1,17 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
-
-    <title>paper-location</title>
-    <meta name="description" content="paper-location description">
-
-    <!-- See https://goo.gl/OOhYW5 -->
-    <link rel="manifest" href="/manifest.json">
-
-    <script src="/bower_components/webcomponentsjs/webcomponents-loader.js"></script>
-
-    <link rel="import" href="/src/paper-location-app/paper-location-app.html">
+    <title>Test Project</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <script src="bower_components/webcomponentsjs/webcomponents-loader.js"></script>
+    <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
+    <script type="text/javascript">
+        app.initialize();
+    </script>
+    <link rel="import" href="src/paper-location-app/paper-location-app.html">
 </head>
 <body>
 <paper-location-app></paper-location-app>
