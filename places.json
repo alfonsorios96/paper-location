@@ -308,5 +308,125 @@
     },
     "category": "ÁREAS DE APOYO",
     "people": []
+  },
+  {
+    "label": "UNIDAD MÉDICA DIDÁCTICA",
+    "building": "101",
+    "position": {
+      "x": "540",
+      "y": "580"
+    },
+    "category": "ÁREAS DE APOYO",
+    "people": []
+  },
+  {
+    "label": "AUDITORIO “DR. ALFONSO PÉREZ ROMO",
+    "building": "101",
+    "position": {
+      "x": "540",
+      "y": "580"
+    },
+    "category": "ÁREAS DE APOYO",
+    "people": []
+  },
+  {
+    "label": "CAFETERÍA NORTE",
+    "building": "122",
+    "position": {
+      "x": "700",
+      "y": "180"
+    },
+    "category": "ÁREAS DE APOYO",
+    "people": []
+  },
+  {
+    "label": "SALA EXPOFORO",
+    "building": "108B",
+    "position": {
+      "x": "675",
+      "y": "540"
+    },
+    "category": "ÁREAS DE APOYO",
+    "people": []
+  },
+  {
+    "label": "LABORATORIO DE SIMULACIÓN DEL ESPACIO ARQUITECTÓNICO",
+    "building": "108C",
+    "position": {
+      "x": "675",
+      "y": "510"
+    },
+    "category": "ÁREAS DE APOYO",
+    "people": []
+  },
+  {
+    "label": "BIBLLIOTECA NORTE",
+    "building": "109",
+    "position": {
+      "x": "590",
+      "y": "400"
+    },
+    "category": "ÁREAS DE APOYO",
+    "people": []
+  },
+  {
+    "label": "LABORATORIO DE HIDRÁULICA",
+    "building": "121",
+    "position": {
+      "x": "700",
+      "y": "20"
+    },
+    "category": "ÁREAS DE APOYO",
+    "people": []
+  },
+  {
+    "label": "MANTENIMIENTO",
+    "building": "125",
+    "position": {
+      "x": "605",
+      "y": "260"
+    },
+    "category": "ÁREAS DE APOYO",
+    "people": []
+  },
+  {
+    "label": "TRANSPORTES",
+    "building": "126",
+    "position": {
+      "x": "640",
+      "y": "260"
+    },
+    "category": "ÁREAS DE APOYO",
+    "people": []
+  },
+  {
+    "label": "ALMACÉN",
+    "building": "127",
+    "position": {
+      "x": "630",
+      "y": "200"
+    },
+    "category": "ÁREAS DE APOYO",
+    "people": []
+  },
+  {
+    "label": "PROCESOS GRÁFICOS",
+    "building": "127",
+    "position": {
+      "x": "630",
+      "y": "200"
+    },
+    "category": "ÁREAS DE APOYO",
+    "people": []
+  },
+  {
+    "label": "INVENTARIOS",
+    "building": "127",
+    "position": {
+      "x": "630",
+      "y": "200"
+    },
+    "category": "ÁREAS DE APOYO",
+    "people": []
   }
 ]
