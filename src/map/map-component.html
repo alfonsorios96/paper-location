@@ -110,8 +110,9 @@
                                 this.set('position.x', positionX);
                                 this.set('position.y', positionY);
 
-                                this.set('marketTarget.y', this.marketTarget.x + event.detail.dx);
-                                this.set('marketTarget.y', this.marketTarget.y + event.detail.dy);
+                                this.set('marketTarget.x', Number(this.marketTarget.x) + event.detail.dx);
+                                this.set('marketTarget.y', Number(this.marketTarget.y) + event.detail.dy);
+
                                 this.__renderImage();
                                 break;
                         }

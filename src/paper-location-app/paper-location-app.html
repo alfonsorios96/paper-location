@@ -147,6 +147,7 @@
 
                 pin(event) {
                     this.set('market', event.model.__data.place.position);
+                    this.$.drawer.close();
                 }
 
                 isAdmin(place) {

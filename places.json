@@ -3,8 +3,8 @@
     "label": "RECTORÍA",
     "building": "1",
     "position": {
-      "x": "560",
-      "y": "470"
+      "x": "150",
+      "y": "530"
     },
     "category": "ÁREAS ADMINISTRATIVAS",
     "people": []
@@ -13,8 +13,8 @@
     "label": "SECRETARÍA GENERAL",
     "building": "1",
     "position": {
-      "x": "560",
-      "y": "470"
+      "x": "150",
+      "y": "530"
     },
     "category": "ÁREAS ADMINISTRATIVAS",
     "people": []
@@ -23,8 +23,8 @@
     "label": "DIRECCIÓN GENERAL DE DOCENCIA DE PREGRADO",
     "building": "1",
     "position": {
-      "x": "560",
-      "y": "470"
+      "x": "150",
+      "y": "530"
     },
     "category": "ÁREAS ADMINISTRATIVAS",
     "people": []
@@ -33,8 +33,8 @@
     "label": "DIRECCIÓN GENERAL DE  INFRAESTRUCTURA UNIVERSITARIA",
     "building": "1",
     "position": {
-      "x": "560",
-      "y": "470"
+      "x": "150",
+      "y": "530"
     },
     "category": "ÁREAS ADMINISTRATIVAS",
     "people": []
@@ -43,8 +43,8 @@
     "label": "DIRECCIÓN GENERAL DE PLANEACIÓN Y DESARROLLO",
     "building": "1",
     "position": {
-      "x": "560",
-      "y": "470"
+      "x": "150",
+      "y": "530"
     },
     "category": "ÁREAS ADMINISTRATIVAS",
     "people": []
@@ -53,8 +53,8 @@
     "label": "DIRECCIÓN GENERAL DE FINANZAS",
     "building": "1",
     "position": {
-      "x": "560",
-      "y": "470"
+      "x": "150",
+      "y": "530"
     },
     "category": "ÁREAS ADMINISTRATIVAS",
     "people": []
@@ -63,8 +63,8 @@
     "label": "DIRECCIÓN GENERAL DE INVESTIGACIÓN Y POSGRADO",
     "building": "1-B",
     "position": {
-      "x": "480",
-      "y": "390"
+      "x": "70",
+      "y": "450"
     },
     "category": "ÁREAS ADMINISTRATIVAS",
     "people": []
@@ -73,8 +73,8 @@
     "label": "DIRECCIÓN GENERAL DE DIFUSIÓN Y VINCULACIÓN",
     "building": "1-B",
     "position": {
-      "x": "480",
-      "y": "390"
+      "x": "70",
+      "y": "450"
     },
     "category": "ÁREAS ADMINISTRATIVAS",
     "people": []
@@ -83,8 +83,8 @@
     "label": "GALERÍA UNIVERSITARIA",
     "building": "1-B",
     "position": {
-      "x": "480",
-      "y": "390"
+      "x": "70",
+      "y": "450"
     },
     "category": "ÁREAS ADMINISTRATIVAS",
     "people": []
@@ -93,8 +93,8 @@
     "label": "CENTRO DE CIENCIAS BÁSICAS",
     "building": "202",
     "position": {
-      "x": "410",
-      "y": "305"
+      "x": "0",
+      "y": "365"
     },
     "category": "ÁREAS ADMINISTRATIVAS",
     "people": []
@@ -103,8 +103,8 @@
     "label": "CENTRO DE CIENCIAS DEL DISEÑO Y DE LA CONSTRUCCIÓN",
     "building": "108",
     "position": {
-      "x": "1090",
-      "y": "500"
+      "x": "680",
+      "y": "560"
     },
     "category": "ÁREAS ADMINISTRATIVAS",
     "people": []
@@ -113,8 +113,8 @@
     "label": "CENTRO DE CIENCIAS ECONÓMICAS Y ADMINISTRATIVAS",
     "building": "32",
     "position": {
-      "x": "890",
-      "y": "350"
+      "x": "480",
+      "y": "410"
     },
     "category": "ÁREAS ADMINISTRATIVAS",
     "people": []
@@ -123,8 +123,8 @@
     "label": "CENTRO DE CIENCIAS DE LA SALUD",
     "building": "101",
     "position": {
-      "x": "950",
-      "y": "500"
+      "x": "540",
+      "y": "560"
     },
     "category": "ÁREAS ADMINISTRATIVAS",
     "people": []
@@ -133,19 +133,18 @@
     "label": "CENTRO DE CIENCIAS SOCIALES Y HUMANIDADES",
     "building": "6,8",
     "position": {
-      "x": "800",
-      "y": "490"
+      "x": "390",
+      "y": "550"
     },
     "category": "ÁREAS ADMINISTRATIVAS",
     "people": []
   },
-
   {
     "label": "DEPARTAMENTO DE COMUNICACIÓN Y RELACIONES PÚBLICAS",
     "building": "2",
     "position": {
-      "x": "620",
-      "y": "460"
+      "x": "210",
+      "y": "520"
     },
     "category": "ÁREAS DE APOYO",
     "people": []
@@ -154,8 +153,8 @@
     "label": "CONTROL ESCOLAR Y CAJAS",
     "building": "1-A",
     "position": {
-      "x": "470",
-      "y": "470"
+      "x": "60",
+      "y": "530"
     },
     "category": "ÁREAS DE APOYO",
     "people": []
@@ -164,8 +163,8 @@
     "label": "FEDERACIÓN DE ESTUDIANTES",
     "building": "1-A",
     "position": {
-      "x": "470",
-      "y": "470"
+      "x": "60",
+      "y": "530"
     },
     "category": "ÁREAS DE APOYO",
     "people": []
@@ -174,8 +173,8 @@
     "label": "LIBRERÍA UNIVERSITARIA",
     "building": "9",
     "position": {
-      "x": "650",
-      "y": "440"
+      "x": "240",
+      "y": "500"
     },
     "category": "ÁREAS DE APOYO",
     "people": []
@@ -184,8 +183,8 @@
     "label": "TIENDA DE PRODUCTOS POSTA",
     "building": "9",
     "position": {
-      "x": "650",
-      "y": "440"
+      "x": "240",
+      "y": "500"
     },
     "category": "ÁREAS DE APOYO",
     "people": []
@@ -194,8 +193,8 @@
     "label": "UNIVERSITIENDA",
     "building": "9",
     "position": {
-      "x": "650",
-      "y": "440"
+      "x": "240",
+      "y": "500"
     },
     "category": "ÁREAS DE APOYO",
     "people": []
@@ -204,8 +203,8 @@
     "label": "CAFETERÍA ORIENTE",
     "building": "9",
     "position": {
-      "x": "650",
-      "y": "440"
+      "x": "240",
+      "y": "500"
     },
     "category": "ÁREAS DE APOYO",
     "people": []
@@ -214,8 +213,8 @@
     "label": "CAFETERÍA PORIENTE",
     "building": "47",
     "position": {
-      "x": "675",
-      "y": "285"
+      "x": "265",
+      "y": "345"
     },
     "category": "ÁREAS DE APOYO",
     "people": []
@@ -224,8 +223,8 @@
     "label": "RADIO UNIVERSIDAD",
     "building": "14",
     "position": {
-      "x": "840",
-      "y": "440"
+      "x": "430",
+      "y": "500"
     },
     "category": "ÁREAS DE APOYO",
     "people": []
@@ -234,8 +233,8 @@
     "label": "CASETA DEL DEPARTAMENTO DE VIGILANCIA",
     "building": "63",
     "position": {
-      "x": "585",
-      "y": "520"
+      "x": "175",
+      "y": "580"
     },
     "category": "ÁREAS DE APOYO",
     "people": []
@@ -244,8 +243,8 @@
     "label": "CASETA ORIENTE",
     "building": "64",
     "position": {
-      "x": "720",
-      "y": "490"
+      "x": "310",
+      "y": "550"
     },
     "category": "ÁREAS DE APOYO",
     "people": []
@@ -254,8 +253,8 @@
     "label": "CONMUTADOR",
     "building": "64",
     "position": {
-      "x": "720",
-      "y": "490"
+      "x": "310",
+      "y": "550"
     },
     "category": "ÁREAS DE APOYO",
     "people": []
@@ -264,8 +263,8 @@
     "label": "MENSAJERÍA",
     "building": "64",
     "position": {
-      "x": "720",
-      "y": "490"
+      "x": "310",
+      "y": "550"
     },
     "category": "ÁREAS DE APOYO",
     "people": []
@@ -274,8 +273,8 @@
     "label": "BIBLIOTECA CENTRAL",
     "building": "65",
     "position": {
-      "x": "550",
-      "y": "400"
+      "x": "140",
+      "y": "430"
     },
     "category": "ÁREAS DE APOYO",
     "people": []
@@ -284,8 +283,8 @@
     "label": "AUDITORIO “DR. PEDRO DE ALBA",
     "building": "65",
     "position": {
-      "x": "550",
-      "y": "400"
+      "x": "140",
+      "y": "430"
     },
     "category": "ÁREAS DE APOYO",
     "people": []
@@ -294,8 +293,8 @@
     "label": "CASETA PONIENTE",
     "building": "66",
     "position": {
-      "x": "780",
-      "y": "285"
+      "x": "370",
+      "y": "345"
     },
     "category": "ÁREAS DE APOYO",
     "people": []
@@ -304,8 +303,8 @@
     "label": "SUAP",
     "building": "66",
     "position": {
-      "x": "780",
-      "y": "285"
+      "x": "370",
+      "y": "345"
     },
     "category": "ÁREAS DE APOYO",
     "people": []
