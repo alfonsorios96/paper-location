@@ -32,6 +32,14 @@
                 padding: 15px;
                 border: 1px solid #dedede;
             }
+
+            paper-button {
+                font-size: 0.7rem;
+            }
+
+            paper-item {
+                font-size: 0.7rem;
+            }
         </style>
         <iron-ajax
                 auto
@@ -42,11 +50,23 @@
         <app-drawer-layout fullbleed narrow="{{narrow}}">
             <app-drawer id="drawer" slot="drawer" swipe-open="[[narrow]]">
                 <div class="menu">
-                    <paper-input label="Buscar un lugar">
-                        <paper-icon-button slot="suffix" icon="search"></paper-icon-button>
+                    <paper-input label="Buscar un lugar" type="search" id="query">
+                        <paper-icon-button slot="suffix" icon="search" on-tap="search"></paper-icon-button>
                     </paper-input>
                     <paper-button on-tap="showPlaces">Áreas administrativas</paper-button>
                     <paper-button on-tap="showPlaces">Áreas de apoyo</paper-button>
+                    <hr>
+                    <template is="dom-if" if="[[isSearching]]">
+                        <template is="dom-repeat" items="[[places]]" as="place" filter="isSearch">
+                            <div class="places">
+                                <paper-button on-tap="pin">
+                                    <paper-item>
+                                        [[place.label]]
+                                    </paper-item>
+                                </paper-button>
+                            </div>
+                        </template>
+                    </template>
                     <iron-collapse id="collapse">
                         <div class="collapse-content">
                             <template is="dom-if" if="[[isAdminAreaSelected]]">
@@ -54,9 +74,7 @@
                                     <div class="places">
                                         <paper-button on-tap="pin">
                                             <paper-item>
-                                                <paper-item-body two-line>
-                                                    <div secondary>[[place.label]]</div>
-                                                </paper-item-body>
+                                                [[place.label]]
                                             </paper-item>
                                         </paper-button>
                                     </div>
@@ -67,9 +85,7 @@
                                     <div class="places">
                                         <paper-button on-tap="pin">
                                             <paper-item>
-                                                <paper-item-body two-line>
-                                                    <div secondary>[[place.label]]</div>
-                                                </paper-item-body>
+                                                [[place.label]]
                                             </paper-item>
                                         </paper-button>
                                     </div>
@@ -82,7 +98,7 @@
             <app-header-layout>
                 <app-header slot="header">
                     <app-toolbar>
-                        <paper-icon-button icon="menu" on-tap="handlerDrawer"></paper-icon-button>
+                        <paper-icon-button icon="menu" drawer-toggle></paper-icon-button>
                         <div main-title>UAA Localización</div>
                     </app-toolbar>
                 </app-header>
@@ -110,15 +126,15 @@
                             type: Array,
                             value: []
                         },
-                        areaSelected: {
-                            type: Number,
-                            value: 0
-                        },
                         isAdminAreaSelected: {
                             type: Boolean,
                             value: false
                         },
                         isHelperAreaSelected: {
+                            type: Boolean,
+                            value: false
+                        },
+                        isSearching: {
                             type: Boolean,
                             value: false
                         },
@@ -128,8 +144,6 @@
                         }
                     };
                 }
-
-                // Animate methods
 
                 showPlaces(event) {
                     switch (event.path[0].innerText) {
@@ -147,7 +161,6 @@
 
                 pin(event) {
                     this.set('market', event.model.__data.place.position);
-                    this.$.drawer.close();
                 }
 
                 isAdmin(place) {
@@ -158,12 +171,21 @@
                     return place.category == 'ÁREAS DE APOYO';
                 }
 
-                handleResponse(event) {
-                    this.set('places', event.detail.__data.response);
+                isSearch(place) {
+                    return place.label.toLowerCase().includes(this.$.query.value.toLowerCase());
                 }
 
-                handlerDrawer() {
-                    this.$.drawer.toggle();
+                search() {
+                    if (this.$.query.value !== '') {
+                        this.set('isSearching', true);
+                    } else {
+                        this.set('isSearching', false);
+                        this.$.query.value = '';
+                    }
+                }
+
+                handleResponse(event) {
+                    this.set('places', event.detail.__data.response);
                 }
             }
 
